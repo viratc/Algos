@@ -1,3 +1,4 @@
+# Time=O(nlog(n)) && space = O(nlog(n))
 def merge_sort(array):
 
     # Base-case of len(array) == 1
@@ -31,10 +32,89 @@ def merge_sorted_array(leftHalf, rightHalf):
         else:
             sortedArray[k] = rightHalf[j]
             j += 1
+        k += 1
+
+    # If we still have number's in the left half ( usually there is a uneven split)
+    while i < len(leftHalf):
+        sortedArray[k] = leftHalf[i]
+        i += 1
+        k +=1 
+
+    # If there are element's in the right half 
+    while j < len(rightHalf):
+        sortedArray[k] = rightHalf[j]
+        j += 1
+        k += 1               
+
+    return(sortedArray)
+        
+# Typically when we sort a array, we mutate them
+
+# Optimization for merge sort; Time=O(nlog(n)) && space = O(n)
+def merge_sort2(array):
+    if len(array) <= 1:
+        return(array)
+
+    auxillaryArray = array[:]
+    mergeSortHelper(array, 0, len(array)-1, auxillaryArray)
+
+    # Since we are sorting `in-place`
+    return(array)
+
+
+def mergeSortHelper(mainArray, startIndex, endIndex, auxillaryArray):
+    if startIndex == endIndex:
+        return
+
+    middleIndex = (startIndex + endIndex) // 2
+
+    mergeSortHelper(auxillaryArray, startIndex, middleIndex, mainArray)
+
+    mergeSortHelper(auxillaryArray, middleIndex+1, endIndex, mainArray)    
+
+    doMerge(mainArray, startIndex, middleIndex, endIndex, auxillaryArray)
+
+def doMerge(mainArray, startIndex, middleIndex, endIndex, auxillaryArray):
+    # We are merging 2 arrays: 1 starts at startIndex and ends at middleIndex and other starts at middleIndex and ends at endIndex
+    k = startIndex
+    i = startIndex  
+    j = middleIndex+1
+
+    while i <= middleIndex and j <= endIndex:
+        if auxillaryArray[i] <= auxillaryArray[j]:
+            mainArray[k] = auxillaryArray[i]
+            i += 1
+        else:
+            mainArray[k] = auxillaryArray[j]
+            j += 1
+        k += 1
+
+    # If elements are still there in left half
+    while i <= middleIndex:
+        mainArray[k] = auxillaryArray[i]
+        i += 1
+        k += 1
+
+    while j <= endIndex:
+        mainArray[k] = auxillaryArray[j]
+        j += 1
         k += 1        
 
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
