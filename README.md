@@ -1,6 +1,6 @@
 # Algos
-Repository that contains implementations of popular Data Structures &amp; Algorithms!!
+Repository that contains implementations of popular _Data Structures_ &amp; _Algorithms_!!
 
-This repository has solution to questions for problems listed on HackeRank and Hackerearth. 
+This repository has solution to questions for problems listed on _HackeRank_ and _Hackerearth_. 
 
-I have also referred AlgoExpert for highly optimized solutions!!
+I have also referred [AlgoExpert](https://www.algoexpert.io) for highly optimized solutions!!
